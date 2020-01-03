@@ -61,7 +61,7 @@ class MainHandler(AbstractRequestHandler):
         if matching_messages:
             message = random.choice(matching_messages)
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
-            speech = speech+'<audio src="https://www.dropbox.com/s/w8oynqhapng3fdf/test.mp3" />'
+            speech = speech+'<audio src="https://www.dropbox.com/s/w8oynqhapng3fdf/test.mp3?dl=1" />'
             # directive = PlayDirective(
             #                 play_behavior=PlayBehavior.REPLACE_ALL,
             #                 audio_item=AudioItem(
