@@ -36,13 +36,14 @@ class MainHandler(AbstractRequestHandler):
         # get localization data
         data = handler_input.attributes_manager.request_attributes["_"]
         logger.info(data)
+        logger.info(handler_input.request)
 
         # random_fact = random.choice(data[prompts.FACTS])
         random_fact = "hello"
         all_messages = data[prompts.AUDIO_BITS]
         logger.info(all_messages)
         # for message in all_messages:
-        #     if message
+        #     if message.
             
         speech = data[prompts.EMOTION_MESSAGE].format(random_fact)
 
