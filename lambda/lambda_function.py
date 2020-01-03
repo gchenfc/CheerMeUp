@@ -50,6 +50,7 @@ class MainHandler(AbstractRequestHandler):
             logger.info(message['emotions'])
             if emotion.lower() in message['emotions']:
                 matching_messages.append(message)
+                logger.info('match!')
         logger.info(matching_messages)
         
         if matching_messages:
