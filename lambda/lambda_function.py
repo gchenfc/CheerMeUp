@@ -27,8 +27,7 @@ class MainHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return (is_request_type("LaunchRequest")(handler_input) or
-                is_intent_name("main")(handler_input))
+        return is_intent_name("main")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -51,7 +50,8 @@ class HelpIntentHandler(AbstractRequestHandler):
 
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return is_intent_name("AMAZON.HelpIntent")(handler_input)
+        return (is_request_type("LaunchRequest")(handler_input) or
+                is_intent_name("AMAZON.HelpIntent")(handler_input))
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
