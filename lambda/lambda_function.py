@@ -51,6 +51,8 @@ class MainHandler(AbstractRequestHandler):
             if emotion.lower() in message['emotions']:
                 matching_messages.append(message)
                 logger.info('match!')
+            else:
+                logger.info('{} was not in {}'.format(emotion.lower(), message['emotions']))
         logger.info(matching_messages)
         
         if matching_messages:
