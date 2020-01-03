@@ -63,18 +63,18 @@ class MainHandler(AbstractRequestHandler):
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
         else:
             speech = "Sorry, I don't have any messages in my database for when you feel {}".format(emotion)
-
+        
+        directive = PlayDirective(
+                        play_behavior=PlayBehavior.REPLACE_ALL,
+                        audio_item=AudioItem(
+                            stream=Stream(
+                                expected_previous_token=None,
+                                token=en_us_audio_data["url"],
+                                url=en_us_audio_data["url"],
+                                offset_in_milliseconds=0
+                            ),
+                            metadata=None))
         handler_input.response_builder.speak(speech).add_directive(
-            PlayDirective(
-                play_behavior=PlayBehavior.REPLACE_ALL,
-                audio_item=AudioItem(
-                    stream=Stream(
-                        expected_previous_token=None,
-                        token=en_us_audio_data["url"],
-                        url=en_us_audio_data["url"],
-                        offset_in_milliseconds=0
-                    ),
-                    metadata=None)))
 
         return handler_input.response_builder.response
 
