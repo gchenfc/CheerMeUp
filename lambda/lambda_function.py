@@ -67,7 +67,7 @@ class MainHandler(AbstractRequestHandler):
                                 stream=Stream(
                                     expected_previous_token=None,
                                     token=message['url'],
-                                    url=en_us_audio_data["url"],
+                                    url=message['url'],
                                     offset_in_milliseconds=0
                                 ),
                                 metadata=None))
