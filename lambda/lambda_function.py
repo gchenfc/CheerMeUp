@@ -46,7 +46,7 @@ class MainHandler(AbstractRequestHandler):
         all_messages = data[prompts.AUDIO_BITS]
         matching_messages = []
         for message in all_messages:
-            if emotion.lower() in message.emotions:
+            if emotion.lower() in message['emotions']:
                 matching_messages.append(message)
         logger.info(matching_messages)
         
