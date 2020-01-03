@@ -118,7 +118,11 @@ class CancelOrStopIntentHandler(AbstractRequestHandler):
         data = handler_input.attributes_manager.request_attributes["_"]
 
         speech = data[prompts.STOP_MESSAGE]
-        handler_input.response_builder.speak(speech)
+        
+        directive = StopDirective()
+
+        handler_input.response_builder.speak(speech).add_directive(
+            directive).set_should_end_session(True)
         return handler_input.response_builder.response
 
 
