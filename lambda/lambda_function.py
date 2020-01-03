@@ -33,19 +33,29 @@ class MainHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In MainHandler")
 
-        # get localization data
+        # get language localization data
         data = handler_input.attributes_manager.request_attributes["_"]
         logger.info(data)
-        logger.info(handler_input.request)
-
-        # random_fact = random.choice(data[prompts.FACTS])
-        random_fact = "hello"
+        
+        # get "emotion" slot from intent
+        emotion = get_slot_value(
+            handler_input=handler_input, slot_name="emotion")
+        logger.info(emotion)
+        
+        # filter out only messages that contain the right emotion
         all_messages = data[prompts.AUDIO_BITS]
-        logger.info(all_messages)
-        # for message in all_messages:
-        #     if message.
+        matching_messages = []
+        for message in all_messages:
+            if emotion.lower() in message.emotions:
+                matching_messages.append(message)
+        logger.info(matching_messages)
+        
+        if matching_messages:
+            message = random.choice(matching_messages)
+            speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
+        else:
+            speech = "Sorry, I don't have any messages in my database for when you feel {}".format(emotion)
             
-        speech = data[prompts.EMOTION_MESSAGE].format(random_fact)
 
         handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
