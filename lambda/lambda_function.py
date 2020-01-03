@@ -73,7 +73,7 @@ class MainHandler(AbstractRequestHandler):
                                                            '"' : '&quot;',
                                                            "'" : '&apos;',
                                                            }))
-            speech = speech+'<audio src="'+audio_url+'" />.  How are you feeling now?'
+            speech = speech+'<audio src="{}" />.  How are you feeling now?'.format(audio_url)
             # directive = PlayDirective(
             #                 play_behavior=PlayBehavior.REPLACE_ALL,
             #                 audio_item=AudioItem(
