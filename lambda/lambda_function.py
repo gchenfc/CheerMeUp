@@ -48,11 +48,11 @@ class MainHandler(AbstractRequestHandler):
         logger.info('looping through messages')
         for message in all_messages:
             logger.info(message['emotions'])
-            if emotion.lower() in message['emotions']:
+            if emotion.lower() in message['emotions'].lower():
                 matching_messages.append(message)
                 logger.info('match!')
             else:
-                logger.info('{} was not in {}'.format(emotion.lower(), message['emotions']))
+                logger.info('{} was not in {}'.format(emotion.lower(), message['emotions'].lower()))
         logger.info(matching_messages)
         
         if matching_messages:
