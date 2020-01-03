@@ -2,7 +2,7 @@
 	"en": {
 		"SKILL_NAME": "Cheer up Virginia",
 		"EMOTION_MESSAGE": "Here's your fact: {}",
-		"HELP_MESSAGE": "How are you?",
+		"HELP_MESSAGE": "How are you feeling?",
 		"HELP_REPROMPT": "You can say things like, I'm sad, or, I'm angry.  How are you?",
 		"FALLBACK_MESSAGE": "Sorry, I don't know how to deal with that.  Is there another emotion you're feeling?",
 		"FALLBACK_REPROMPT": "What can I help you with?",
