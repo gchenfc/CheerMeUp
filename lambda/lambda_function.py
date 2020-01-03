@@ -61,21 +61,20 @@ class MainHandler(AbstractRequestHandler):
         if matching_messages:
             message = random.choice(matching_messages)
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
+            directive = PlayDirective(
+                            play_behavior=PlayBehavior.REPLACE_ALL,
+                            audio_item=AudioItem(
+                                stream=Stream(
+                                    expected_previous_token=None,
+                                    token=message['url'],
+                                    url=en_us_audio_data["url"],
+                                    offset_in_milliseconds=0
+                                ),
+                                metadata=None))
+            handler_input.response_builder.speak(speech).add_directive(directive)
         else:
             speech = "Sorry, I don't have any messages in my database for when you feel {}".format(emotion)
-        
-        directive = PlayDirective(
-                        play_behavior=PlayBehavior.REPLACE_ALL,
-                        audio_item=AudioItem(
-                            stream=Stream(
-                                expected_previous_token=None,
-                                token=en_us_audio_data["url"],
-                                url=en_us_audio_data["url"],
-                                offset_in_milliseconds=0
-                            ),
-                            metadata=None))
-
-        handler_input.response_builder.speak(speech).add_directive(directive)
+            handler_input.response_builder.speak(speech)
 
         return handler_input.response_builder.response
 
