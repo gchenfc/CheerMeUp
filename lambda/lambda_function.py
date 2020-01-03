@@ -62,17 +62,17 @@ class MainHandler(AbstractRequestHandler):
             message = random.choice(matching_messages)
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
             speech = speech+'<audio src="https://amzn1-ask-skill-b96ccb4f-bfa1-buildsnapshotbucket-1etzihizgac0.s3.amazonaws.com/Media/test.mp3" />'
-            directive = PlayDirective(
-                            play_behavior=PlayBehavior.REPLACE_ALL,
-                            audio_item=AudioItem(
-                                stream=Stream(
-                                    expected_previous_token=None,
-                                    token=message['url'],
-                                    url=message['url'],
-                                    offset_in_milliseconds=0
-                                ),
-                                metadata=None))
-            handler_input.response_builder.speak(speech).add_directive(directive)
+            # directive = PlayDirective(
+            #                 play_behavior=PlayBehavior.REPLACE_ALL,
+            #                 audio_item=AudioItem(
+            #                     stream=Stream(
+            #                         expected_previous_token=None,
+            #                         token=message['url'],
+            #                         url=message['url'],
+            #                         offset_in_milliseconds=0
+            #                     ),
+            #                     metadata=None))
+            handler_input.response_builder.speak(speech)#.add_directive(directive)
         else:
             speech = "Sorry, I don't have any messages in my database for when you feel {}".format(emotion)
             handler_input.response_builder.speak(speech)
