@@ -74,7 +74,7 @@ class MainHandler(AbstractRequestHandler):
                                 offset_in_milliseconds=0
                             ),
                             metadata=None))
-        handler_input.response_builder.speak(speech).add_directive(
+        handler_input.response_builder.speak(speech).add_directive(directive)
 
         return handler_input.response_builder.response
 
