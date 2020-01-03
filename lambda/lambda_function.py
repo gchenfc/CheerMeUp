@@ -64,7 +64,7 @@ class MainHandler(AbstractRequestHandler):
             message = random.choice(matching_messages)
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
             
-            audio_url = create_presigned_url("Media/test.mp3")
+            audio_url = create_presigned_url(message['s3path'])
             audio_url = audio_url.translate(str.maketrans({'&' : '&amp;',
                                                            '<' : '&lt;',
                                                            '>' : '&gt;',
