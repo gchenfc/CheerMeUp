@@ -39,6 +39,7 @@ class MainHandler(AbstractRequestHandler):
 
         # random_fact = random.choice(data[prompts.FACTS])
         random_fact = "hello"
+        all_messages = data[prompts.AUDIO_BITS]
         speech = data[prompts.EMOTION_MESSAGE].format(random_fact)
 
         handler_input.response_builder.speak(speech)
