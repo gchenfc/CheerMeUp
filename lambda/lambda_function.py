@@ -89,7 +89,7 @@ class MainHandler(AbstractRequestHandler):
             speech = "Sorry, I don't have any messages in my database for when you feel {}.  Can you describe it another way?".format(emotion)
             handler_input.response_builder.speak(speech)
 
-        handler_input.response_builder.ask('How are you feeling now?')
+        handler_input.response_builder.ask('How are you feeling now?').set_should_end_session(False)
         return handler_input.response_builder.response
 
 
