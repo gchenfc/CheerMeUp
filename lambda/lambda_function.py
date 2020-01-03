@@ -19,6 +19,8 @@ from ask_sdk_model import Response
 from ask_sdk_model.interfaces.audioplayer import (
     PlayDirective, PlayBehavior, AudioItem, Stream)
 
+from utils import create_presigned_url
+
 sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -61,7 +63,9 @@ class MainHandler(AbstractRequestHandler):
         if matching_messages:
             message = random.choice(matching_messages)
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
-            speech = speech+'<audio src="https://www.dropbox.com/s/w8oynqhapng3fdf/test.mp3?dl=1" />'
+            
+            audio_url = create_presigned_url("Media/test.mp3")
+            speech = speech+'<audio src="'+audio_url+'" />'
             # directive = PlayDirective(
             #                 play_behavior=PlayBehavior.REPLACE_ALL,
             #                 audio_item=AudioItem(
