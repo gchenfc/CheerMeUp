@@ -36,12 +36,13 @@ class MainHandler(AbstractRequestHandler):
 
         # get localization data
         data = handler_input.attributes_manager.request_attributes["_"]
-        # logger.info(data)
+        logger.info(data)
 
-        random_fact = random.choice(data[prompts.FACTS])
-        speech = data[prompts.GET_FACT_MESSAGE].format(random_fact)
+        # random_fact = random.choice(data[prompts.FACTS])
+        random_fact = "hello"
+        speech = data[prompts.EMOTION_MESSAGE].format(random_fact)
 
-        handler_input.response_builder.speak(speech).set_card(
+        handler_input.response_builder.speak("hello").set_card(
             SimpleCard(data[prompts.SKILL_NAME], random_fact))
         return handler_input.response_builder.response
 
