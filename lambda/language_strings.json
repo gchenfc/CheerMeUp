@@ -7,17 +7,6 @@
 		"FALLBACK_MESSAGE": "Sorry, I don't know how to deal with that.  Is there another emotion you're feeling?",
 		"FALLBACK_REPROMPT": "What can I help you with?",
 		"ERROR_MESSAGE": "Sorry, an error occurred.",
-		"STOP_MESSAGE": "Goodbye!",
-		"AUDIO_BITS": [
-			{
-			    "date": "2020-01-03 00:55:14",
-			    "name": "Gerry",
-			    "id": "test 1",
-			    "emotions": "Sad; Neutral",
-			    "s3path": "Media/test.mp3",
-			    "url": "https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3",
-			    "url2": "https://www.jotform.com/widget-uploads/voiceRecorder/200020968432043/5e0ed73da060a_1578030909.wav"
-			}
-		]
+		"STOP_MESSAGE": "Goodbye!"
 	}
 }
