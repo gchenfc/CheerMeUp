@@ -55,7 +55,6 @@ class MainHandler(AbstractRequestHandler):
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
         else:
             speech = "Sorry, I don't have any messages in my database for when you feel {}".format(emotion)
-            
 
         handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
