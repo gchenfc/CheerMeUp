@@ -42,8 +42,7 @@ class MainHandler(AbstractRequestHandler):
         random_fact = "hello"
         speech = data[prompts.EMOTION_MESSAGE].format(random_fact)
 
-        handler_input.response_builder.speak("hello").set_card(
-            SimpleCard(data[prompts.SKILL_NAME], random_fact))
+        handler_input.response_builder.speak(speech)
         return handler_input.response_builder.response
 
 
