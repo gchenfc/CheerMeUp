@@ -86,10 +86,10 @@ class MainHandler(AbstractRequestHandler):
             #                     metadata=None))
             handler_input.response_builder.speak(speech)#.add_directive(directive)
         else:
-            speech = "Sorry, I don't have any messages in my database for when you feel {}.  Can you describe another way?".format(emotion)
+            speech = "Sorry, I don't have any messages in my database for when you feel {}.  Can you describe it another way?".format(emotion)
             handler_input.response_builder.speak(speech)
 
-        handler_input.response_builder
+        handler_input.response_builder.ask('How are you feeling now?')
         return handler_input.response_builder.response
 
 
