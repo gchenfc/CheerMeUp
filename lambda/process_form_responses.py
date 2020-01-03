@@ -25,13 +25,13 @@ def download_wav(url):
 def main():
     data = []
     with open('form_responses.csv', newline='') as csvfile:
-        spamreader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
         for i, row in enumerate(spamreader):
             print('processing line {:d}'.format(i))
             date, name, id, emotion, url = row
             if download_wav(url):
                 fname = 'tmp{}.wav'.format(url[-10:url.find('.wav')])
-                os.system('ffmpeg -hide_banner -loglevel panic -i {} -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 audio/test{:d}.mp3'.format(fname, i))
+                os.system('ffmpeg -n -hide_banner -loglevel panic -i {} -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 audio/test{:d}.mp3'.format(fname, i))
                 # print('ffmpeg -i tmp.wav -ac 2 -codec:a libmp3lame -b:a 48k -ar 16000 test{:d}.mp3'.format(i, i))
                 data.append({
                     'date': date,
