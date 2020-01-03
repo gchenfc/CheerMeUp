@@ -49,8 +49,8 @@ class MainHandler(AbstractRequestHandler):
         
         # filter out only messages that contain the right emotion
         all_messages = []
-        
-        all_messages = data[prompts.AUDIO_BITS]
+        with open("form_responses.json") as form_responses:
+            all_messages = json.load(form_responses)
         matching_messages = []
         logger.info('looping through messages')
         for message in all_messages:
