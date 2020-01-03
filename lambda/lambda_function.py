@@ -36,7 +36,7 @@ class MainHandler(AbstractRequestHandler):
 
         # get localization data
         data = handler_input.attributes_manager.request_attributes["_"]
-        logger.info(data)
+        # logger.info(data)
 
         random_fact = random.choice(data[prompts.FACTS])
         speech = data[prompts.GET_FACT_MESSAGE].format(random_fact)
