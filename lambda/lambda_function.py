@@ -48,6 +48,8 @@ class MainHandler(AbstractRequestHandler):
         logger.info(emotion)
         
         # filter out only messages that contain the right emotion
+        all_messages = []
+        
         all_messages = data[prompts.AUDIO_BITS]
         matching_messages = []
         logger.info('looping through messages')
