@@ -16,6 +16,9 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
+from ask_sdk_model.interfaces.audioplayer import (
+    PlayDirective, PlayBehavior, AudioItem, Stream)
+
 sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -61,7 +64,18 @@ class MainHandler(AbstractRequestHandler):
         else:
             speech = "Sorry, I don't have any messages in my database for when you feel {}".format(emotion)
 
-        handler_input.response_builder.speak(speech)
+        handler_input.response_builder.speak(speech).add_directive(
+            PlayDirective(
+                play_behavior=PlayBehavior.REPLACE_ALL,
+                audio_item=AudioItem(
+                    stream=Stream(
+                        expected_previous_token=None,
+                        token=en_us_audio_data["url"],
+                        url=en_us_audio_data["url"],
+                        offset_in_milliseconds=0
+                    ),
+                    metadata=None)))
+
         return handler_input.response_builder.response
 
 
