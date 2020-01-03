@@ -40,6 +40,7 @@ class MainHandler(AbstractRequestHandler):
         # random_fact = random.choice(data[prompts.FACTS])
         random_fact = "hello"
         all_messages = data[prompts.AUDIO_BITS]
+        logger.info(all_messages)
         # for message in all_messages:
         #     if message
             
