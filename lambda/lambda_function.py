@@ -61,6 +61,7 @@ class MainHandler(AbstractRequestHandler):
         if matching_messages:
             message = random.choice(matching_messages)
             speech = data[prompts.EMOTION_MESSAGE].format(message['name'])
+            speech = speech+'<audio src="https://file-examples.com/wp-content/uploads/2017/11/file_example_MP3_700KB.mp3" />'
             directive = PlayDirective(
                             play_behavior=PlayBehavior.REPLACE_ALL,
                             audio_item=AudioItem(
