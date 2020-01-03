@@ -73,7 +73,7 @@ class MainHandler(AbstractRequestHandler):
                                                            '"' : '&quot;',
                                                            "'" : '&apos;',
                                                            }))
-            speech = speech+'<audio src="'+audio_url+'" />'
+            speech = speech+'<audio src="'+audio_url+'" />.  How are you feeling now?'
             # directive = PlayDirective(
             #                 play_behavior=PlayBehavior.REPLACE_ALL,
             #                 audio_item=AudioItem(
