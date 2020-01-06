@@ -4,7 +4,7 @@ import os
 import time
 
 def download_wav(url):
-    option = """-H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36' -H 'cookie: jtuc=gerry.chen2015%3A966671400c8619e922c5168c35a76c72; '"""
+    option = """-H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36' -H 'cookie: jtuc=gerry.chen2015%3A7a4bc761d8486da23a24e4994d2cf93f; '"""
     os.system('curl -s -D tmpHeader {} {} --output /dev/null'.format(option, url))
     # print('curl -s -D tmpHeader {} {} --output /dev/null'.format(option, url))
     realurl = None
