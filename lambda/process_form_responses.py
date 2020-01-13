@@ -2,21 +2,15 @@ import csv
 import json
 import os
 import time
+import requests
 
 def download_wav(url):
-    option = """-H 'user-agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36' -H 'cookie: jtuc=gerry.chen2015%3A7a4bc761d8486da23a24e4994d2cf93f; '"""
-    os.system('curl -s -D tmpHeader {} {} --output /dev/null'.format(option, url))
-    # print('curl -s -D tmpHeader {} {} --output /dev/null'.format(option, url))
-    realurl = None
-    with open('tmpHeader', newline='\n') as f:
-        for line in f:
-            if 'location' in line.lower():
-                fields = line.split(': ')
-                realurl = fields[-1].replace('\r\n','')
-    os.system('rm tmpHeader')
-    if realurl:
-        os.system('curl -s -o tmp{}.wav {}'.format(url[-10:url.find('.wav')], realurl))
-        # print('curl -s -o tmp.wav {}'.format(realurl))
+    headers = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_6) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36'}
+    cookies = {'jtuc': 'gerry.chen2015%3A7a4bc761d8486da23a24e4994d2cf93f'}
+    resp = requests.post(url, headers=headers, cookies=cookies)
+    if resp.status_code == 200:
+        with open('tmp{}.wav'.format(url[-10:url.find('.wav')]), 'wb') as f:
+            f.write(resp.content)
         time.sleep(0.3) # just make sure it's fully downloaded/read
         return True
     else:
@@ -26,6 +20,7 @@ def main():
     data = []
     with open('form_responses.csv', newline='') as csvfile:
         spamreader = csv.reader(csvfile, delimiter=',', quotechar='"')
+        next(spamreader) # ignore header line
         for i, row in enumerate(spamreader):
             print('processing line {:d}'.format(i))
             date, name, id, emotion, url = row
